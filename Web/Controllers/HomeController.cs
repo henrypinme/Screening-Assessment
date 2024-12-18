@@ -8,13 +8,28 @@ namespace Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private static int counter = 0;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+        [HttpPost]
+        public IActionResult CounterInc()
+        {
+            counter++;
+            ViewData["Increment"] = counter;
+            return View("Index");
+        }
+
+        public IActionResult Index1()
+        {
+            ViewData["IncrementByOne"] = counter;
+            return View();
+        }
         public IActionResult Index()
         {
+            ViewData["Increment"] = counter;
             return View();
         }
 
